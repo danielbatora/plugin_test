@@ -1,0 +1,48 @@
+name: plugin_test
+display_name: display
+contributions:
+  commands:
+    - id: plugin_test.get_reader
+      python_name: module._reader:napari_get_reader
+      title: Open data with display
+    - id: plugin_test.write_multiple
+      python_name: module._writer:write_multiple
+      title: Save multi-layer data with display
+    - id: plugin_test.write_single_image
+      python_name: module._writer:write_single_image
+      title: Save image data with display
+    - id: plugin_test.make_sample_data
+      python_name: module._sample_data:make_sample_data
+      title: Load sample data from display
+    - id: plugin_test.make_qwidget
+      python_name: module._widget:ExampleQWidget
+      title: Make example QWidget
+    - id: plugin_test.make_magic_widget
+      python_name: module._widget:example_magic_widget
+      title: Make example magic widget
+    - id: plugin_test.make_func_widget
+      python_name: module._widget:example_function_widget
+      title: Make example function widget
+  readers:
+    - command: plugin_test.get_reader
+      accepts_directories: false
+      filename_patterns: ['*.npy']
+  writers:
+    - command: plugin_test.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: plugin_test.write_single_image
+      layer_types: ['image']
+      filename_extensions: ['.npy']
+  sample_data:
+    - command: plugin_test.make_sample_data
+      display_name: display
+      key: unique_id.1
+  widgets:
+    - command: plugin_test.make_qwidget
+      display_name: Example QWidget
+    - command: plugin_test.make_magic_widget
+      display_name: Example Magic Widget
+    - command: plugin_test.make_func_widget
+      autogenerate: true
+      display_name: Example Function Widget
